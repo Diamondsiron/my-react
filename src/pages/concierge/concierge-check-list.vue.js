@@ -2,11 +2,15 @@ import React , { useState, useEffect }from 'react';
 import axios from '../../plugins/axios'
 import CarCard from '../../components/car-card/index'
 import Tabs from '../../components/tabs/index'
+import HeaderSearch from '../../components/header-search'
+import { createBrowserHistory } from 'history';
 //import PropTypes from 'prop-types';
 
-function List() {
+function List(props) {
+  console.log("props",props);
    
   //const [state, setState] = useState({ count: 0, data: [1, 2, 3] });
+    const history = createBrowserHistory();
     let [fruitStateVariable,setCount] = useState([]); // 返回一个有两个元素的数组
     let tabs = [1,2,3]
 
@@ -28,7 +32,12 @@ function List() {
         console.log(err)
       })
     };
-    
+
+    function handlerClick(){
+      props.history.push('/checkIn')
+        // history.push('/checkIn')
+    }
+
     const listItems = fruitStateVariable.map((num) => (
       <CarCard key={num.id}
               value={num}/>
@@ -45,8 +54,9 @@ function List() {
     return (
      
       <div className="App" >
+        <HeaderSearch/>
         <Tabs list={tabs} callback={callback}></Tabs>
-        <div>{listItems}</div>
+        <div onClick={handlerClick}>{listItems}</div>
         concierge-check-list.vue
       </div>
     );
