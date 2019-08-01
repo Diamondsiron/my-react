@@ -79,3 +79,15 @@ body{
   padding: 0px 0px 0px 0px;
   border:none
 }
+.index-title{
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  background-color: #F2F2F2
+}
+.content{
+  background-color: #fff;
+}
+.upload-input{
+  display: none
+}
