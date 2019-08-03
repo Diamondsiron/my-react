@@ -57,7 +57,7 @@ function Upload(props){
             </div>   
             <div className="upload-input" onClick={a} >222
             </div>        
-            <input type='file' className="upload-input" onChange={a} ref={ref}/>
+            <input type='file' className="upload-input" onChange={a} ref={ref} accept='image/png, image/jpeg, image/gif, image/jpg'/>
         </div>
     )
 }

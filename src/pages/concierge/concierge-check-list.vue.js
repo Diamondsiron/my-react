@@ -1,4 +1,4 @@
-import React , { useState, useEffect }from 'react';
+import React , { useState, useEffect, useReducer }from 'react';
 import axios from '../../plugins/axios'
 import CarCard from '../../components/car-card/index'
 import Tabs from '../../components/tabs/index'
@@ -6,9 +6,20 @@ import HeaderSearch from '../../components/header-search'
 import { createBrowserHistory } from 'history';
 //import PropTypes from 'prop-types';
 
+const initialState = 0;
+
+const reducer = (state, action) => {
+  switch (action) {
+    case 'increment' : return state + 1;
+    case 'decrement' : return state -1;
+    case 'reset' : return 0;
+    default: throw new Error('Unexpetced action')
+  }
+}
+
 function List(props) {
   console.log("props",props);
-   
+    const [count, dispatch] = useReducer(reducer, initialState)  
   //const [state, setState] = useState({ count: 0, data: [1, 2, 3] });
     const history = createBrowserHistory();
     let [fruitStateVariable,setCount] = useState([]); // 返回一个有两个元素的数组
@@ -58,6 +69,10 @@ function List(props) {
         <Tabs list={tabs} callback={callback}></Tabs>
         <div onClick={handlerClick}>{listItems}</div>
         concierge-check-list.vue
+        {count}
+        <button onClick={()=>dispatch('increment')}>+1</button>
+        <button onClick={()=>dispatch('decrement')}>-1</button>
+        <button onClick={()=>dispatch('reset')}>reset</button>
       </div>
     );
   }

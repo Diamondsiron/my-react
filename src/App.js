@@ -11,6 +11,13 @@ import Home from './pages/home'
 import NoMatch from './pages/NoMatch'
 import { Provider } from 'react-redux'
 import store from './actions/index'
+import Example01 from './pages/useReducer/text1'
+import Example02 from './pages/useReducer/text2'
+import Example03 from './pages/useReducer/text3'
+import Example04 from './pages/useReducer/text4'
+import Example05 from './pages/useReducer/text5'
+import Example06 from './pages/useReducer/text6'
+import Context from './pages/context'
 
 function App() {
   return (
@@ -23,6 +30,13 @@ function App() {
             <Route path="/car" component={Car}></Route> 
             <Route path="/list" component={list}></Route> 
             <Route path="/checkIn" component={checkIn}></Route> 
+            <Route path="/Example01" component={Example01}></Route> 
+            <Route path="/Example02" component={Example02}></Route> 
+            <Route path="/Example03" component={Example03}></Route> 
+            <Route path="/Example04" component={Example04}></Route> 
+            <Route path="/Example05" component={Example05}></Route> 
+            <Route path="/Example06" component={Example06}></Route> 
+            <Route path="/Context" component={Context}></Route> 
             <Route  component={NoMatch}></Route> 
           </Switch>
         </Router>
