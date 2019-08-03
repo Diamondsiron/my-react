@@ -1,37 +1,37 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
+const Theme = React.createContext('light') 
 
-
-const Context = () => {
-    const Theme = React.createContext('light') 
-    return (
-        <Theme.Provider value='dark'>
-            <Toolbar/>
-        </Theme.Provider>
-    )
+class Context extends React.Component {
+   
+    render(){
+        return (
+            <Theme.Provider value='dark'>
+                <Toolbar/>
+            </Theme.Provider>
+        )
+    }
+    
 }
 
 const Toolbar = (props) => {
     //console.log(Theme,'Toolbar')
     return (
         
-        <div>
+        <React.Fragment>
             <ThemeButton/>
-        </div>
+        </React.Fragment>
        
     )
 }
 
-const ThemeButton = () => {
-    //console.log(this.Theme,'ThemeButton')
+class ThemeButton  extends React.Component {
     
-    return (
-        
-        <div>
-            <button >123</button>
-        </div>
-        
-    )
+    static contextType = Theme;
+    render() {
+        return <div theme={this.context} >{this.context}111</div>;
+      }
 }
 
 export default Context

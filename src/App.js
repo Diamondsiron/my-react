@@ -18,6 +18,7 @@ import Example04 from './pages/useReducer/text4'
 import Example05 from './pages/useReducer/text5'
 import Example06 from './pages/useReducer/text6'
 import Context from './pages/context'
+import Rxjs from './pages/rxjs'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/Example05" component={Example05}></Route> 
             <Route path="/Example06" component={Example06}></Route> 
             <Route path="/Context" component={Context}></Route> 
+            <Route path="/Rxjs" component={Rxjs}></Route> 
             <Route  component={NoMatch}></Route> 
           </Switch>
         </Router>
