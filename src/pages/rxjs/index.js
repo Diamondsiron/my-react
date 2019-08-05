@@ -1,10 +1,7 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import * as rxjs from 'rxjs';
-import { of,  pipe, Observable, Subject, asyncScheduler  } from 'rxjs';
-import { from } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { observeOn } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
+import { of,  pipe, Observable, Subject, asyncScheduler, from  } from 'rxjs';
+import { switchMap, filter, observeOn, map, catchError, concatAll  } from 'rxjs/operators';
 import axios from '../../plugins/axios'
 
 // const subject = new Subject();
@@ -77,44 +74,7 @@ import axios from '../../plugins/axios'
 //   });
 // }
 
-const initialState = 0;
-const reducer = (state, action) => {
-  switch (action) {
-    case 'increment': return state + 1;
-    case 'decrement': return state - 1;
-    case 'reset': return 0;
-    default: throw new Error('Unexpected action');
-  }
-};
-function hand(){
-  let url = `/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL`
-  return axios.get(`/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL`)
-}
-function handle(){
-  let url = `/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL`
-  axios.get(url).then(res=>{
-    console.log(res,'res')
-    let observable = new Observable((observer) => {
-      observer.next(res.data.payload);
-      observer.complete();
-    });
-    observable.subscribe({
-      next(x) {
-        console.log('subscribe got value ' , x)
-      },
-      error(err) {
-        console.error('subscribe something wrong occurred: ' + err);
-      },
-      complete() {
-         console.log('subscribe done');
-      }
-    });
-    console.log(observable,'observable')
-    return observable
-  },err=>{
-    console.log(err)
-  })
-};
+
 
 const Rxjs = () => {
   // let a = rxjs.of(1,2,3)
@@ -138,36 +98,56 @@ const Rxjs = () => {
   // console.log('just after subscribe');
   // map(x => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
   
-  // const getPromise = () => {
-  //   return axios.get('/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL')
-  // }
   
 
   const urlObservable = new Observable(subscriber => {
-    subscriber.next('/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL');
-  }).pipe(
+                          subscriber.next('/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL');
+                        })
+                        .pipe(
+                          switchMap(url => axios.get(url)),
+                          map(v =>{
+                                    v=v.data.payload.list.filter(x=>x.status==='SHUT');
+                                    console.log(v,'v')
+                                    return v
+                          }),
+                          //filter(x=>x.status==='SHUT'),
+                          map(v =>console.log(v,'vvv')),
+                          catchError(err=>{console.log(err)}),
+                        )
+                        .subscribe({
+                          next(x) { console.log('got value ' , x); },
+                          error(err) { console.error('something wrong occurred: ' , err); },
+                          complete(x) { console.log('done',x); }
+                        });
+  
+    let http = new Observable(subscriber => {
+                              subscriber.next('/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL');
+                            })
+    http.pipe(
       switchMap(url => axios.get(url)),
-      map(v => console.log(v.data.payload,'v'))
+      map(v =>{
+                v=v.data.payload.list.filter(x=>x.status==='SHUT');
+                console.log(v,'http')
+                return v
+      }),
+      //concatAll(),
+      //filter(x=>x.status==='SHUT'),
+      map(v =>console.log(v,'http')),
+      catchError(err=>{console.log(err)}),
     )
-  .subscribe({
-    next(x) { console.log('got value ' , x); },
-    error(err) { console.error('something wrong occurred: ' , err); },
-    complete(x) { console.log('done',x); }
-  });
-  
-
-  
+    .subscribe({
+      next(x) { console.log('got value ' , x); },
+      error(err) { console.error('something wrong occurred: ' , err); },
+      complete(x) { console.log('done',x); }
+    });                     
 
   
   
   
-  const [count, dispatch] = useReducer(reducer, initialState);
+  
   return (
     <div>
-      {count}
-      <button onClick={() => dispatch('increment')}>+1</button>
-      <button onClick={() => dispatch('decrement')}>-1</button>
-      <button onClick={() => dispatch('reset')}>reset</button>
+     
     </div>
   );
 };
