@@ -33,7 +33,7 @@ function List(props) {
     },[]);
     //let numbers = []
     function handle(){
-      let url = `/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/PREPARED`
+      let url = `/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL`
       axios.get(url).then(res=>{
         console.log(res)
         setCount(res.data.payload.list)
