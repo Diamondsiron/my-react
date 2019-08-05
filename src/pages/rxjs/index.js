@@ -141,13 +141,18 @@ const Rxjs = () => {
       complete(x) { console.log('done',x); }
     });                     
 
-  
+    const angular  = from(axios.get('/api/moby-mall/postsale/api/v1/postsale/task/list/PRECHECK/ALL'))
+    angular.subscribe({
+      next(response) { console.log('a',response); },
+      error(err) { console.error('Error: ' + err); },
+      complete() { console.log('Completed'); }
+    });
   
   
   
   return (
     <div>
-     
+     rxjs
     </div>
   );
 };
