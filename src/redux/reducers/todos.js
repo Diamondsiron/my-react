@@ -1,4 +1,4 @@
-import {ADD_TODO, TOGGLE_TODO} from '../actionTypes'
+import {ADD_TODO, TOGGLE_TODO, THUNKS} from '../actionTypes'
 
 const initialState = {
     allIds:[],
@@ -20,6 +20,11 @@ export default function (state = initialState, action) {
                     }
                 }
             }
+        }
+        case THUNKS:{
+            return fetch(`https://www.reddit.com/r/frontend.json`)
+                   .then(resp=>resp.json())
+                   
         }
         case TOGGLE_TODO: {
             const { id } = action.payload;

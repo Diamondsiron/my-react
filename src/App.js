@@ -20,6 +20,7 @@ import Example06 from './pages/useReducer/text6'
 import Context from './pages/context'
 import Rxjs from './pages/rxjs'
 import TodoApp from './pages/TodoAPP'
+import Thunk from './pages/thunk'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/Context" component={Context}></Route> 
             <Route path="/Rxjs" component={Rxjs}></Route> 
             <Route path="/TodoApp" component={TodoApp}></Route> 
+            <Route path="/Thunk" component={Thunk}></Route> 
             <Route  component={NoMatch}></Route> 
           </Switch>
         </Router>
