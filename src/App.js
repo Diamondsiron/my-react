@@ -29,6 +29,7 @@ function App() {
         <Header/>
         <Router>
           <Switch>
+            <Route path="/" component={Home}/>
             <Route path="/Home" component={Home}></Route> 
             <Route path="/car" component={Car}></Route> 
             <Route path="/list" component={list}></Route> 
