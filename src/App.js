@@ -23,7 +23,7 @@ import TodoApp from './pages/TodoAPP'
 import Thunk from './pages/thunk'
 import HocPage from './pages/modularization/HocPage'
 import MyFormPage from './pages/modularization/MyFormPage'
-
+import DialogPage from './pages/modularization/DialogPage'
 function App() {
   return (
     <div className="App">
@@ -31,7 +31,7 @@ function App() {
         <Header/>
         <Router>
           <Switch>
-            <Route path="/" component={MyFormPage}/>
+            <Route path="/" component={DialogPage}/>
             <Route path="/Home" component={Home}></Route> 
             <Route path="/car" component={Car}></Route> 
             <Route path="/list" component={list}></Route> 
