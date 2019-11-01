@@ -21,6 +21,7 @@ import Context from './pages/context'
 import Rxjs from './pages/rxjs'
 import TodoApp from './pages/TodoAPP'
 import Thunk from './pages/thunk'
+import HocPage from './pages/modularization/HocPage'
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
         <Header/>
         <Router>
           <Switch>
-            <Route path="/" component={Home}/>
+            <Route path="/" component={HocPage}/>
             <Route path="/Home" component={Home}></Route> 
             <Route path="/car" component={Car}></Route> 
             <Route path="/list" component={list}></Route> 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/Rxjs" component={Rxjs}></Route> 
             <Route path="/TodoApp" component={TodoApp}></Route> 
             <Route path="/Thunk" component={Thunk}></Route> 
+            <Route path="/HocPage" component={HocPage}></Route> 
             <Route  component={NoMatch}></Route> 
           </Switch>
         </Router>
