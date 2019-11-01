@@ -24,6 +24,7 @@ import Thunk from './pages/thunk'
 import HocPage from './pages/modularization/HocPage'
 import MyFormPage from './pages/modularization/MyFormPage'
 import DialogPage from './pages/modularization/DialogPage'
+import ReactMemoPage from './pages/modularization/ReactMemoPage'
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,8 @@ function App() {
           <Switch>
             <Route path="/" component={DialogPage}/>
             <Route path="/Home" component={Home}></Route> 
+            <Route path="/MyFormPage" component={MyFormPage}></Route> 
+            <Route path="/ReactMemoPage" component={ReactMemoPage}></Route> 
             <Route path="/car" component={Car}></Route> 
             <Route path="/list" component={list}></Route> 
             <Route path="/checkIn" component={checkIn}></Route> 
