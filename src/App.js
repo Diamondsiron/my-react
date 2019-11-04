@@ -50,7 +50,7 @@ function App() {
             <Route path="/TodoApp" component={TodoApp}></Route> 
             <Route path="/Thunk" component={Thunk}></Route> 
             <Route path="/HocPage" component={HocPage}></Route> 
-            <Route path="/" component={DialogPage}/>
+            <Route path="/" component={Home}/>
             <Route  component={NoMatch}></Route> 
           </Switch>
         </Router>
