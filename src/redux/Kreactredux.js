@@ -10,6 +10,7 @@ export function Provider({store, children}) {
 export const connect = (
     mapStateToProps = state => state,
     mapDispatchToProps = {}
+    
 ) => Cmp => props => {
     const store = useContext(Context)
     const getMoreProps = () => {

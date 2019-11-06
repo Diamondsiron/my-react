@@ -8,6 +8,7 @@ export function createStore(reducer, enhancer) {
     function getState(){
         return currentState
     }
+    
 
     function dispatch(action) {
         currentState = reducer(currentState, action)
