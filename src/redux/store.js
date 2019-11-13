@@ -11,3 +11,5 @@ export default createStore(
     rootReducer,
     applyMiddleware(...middleware)
 )
+
+//sagaMiddleware.run(mySaga);
